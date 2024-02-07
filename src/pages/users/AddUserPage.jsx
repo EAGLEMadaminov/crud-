@@ -1,0 +1,86 @@
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+function AddUserPage() {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+  const AddUserBtn = async (data) => {
+    const id = (Math.random() * 20).toString(36);
+    data.id = id;
+    data.status = "active";
+    if (data.password.length < 6) {
+      toast.error("Please enter more than 6 digin password");
+      return;
+    }
+    try {
+      let { data: user } = await axios.post("/users", data);
+      console.log(user);
+      if (user) {
+        toast.success("User create successfully");
+        let token = (Math.random() * 50).toString(26);
+        localStorage.setItem("token", token);
+        navigate("/users");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Network Error");
+    }
+  };
+  return (
+    <div className="bg-[rgba(0,0,0,0.4)] flex items-center h-screen w-full">
+      <div className="bg-white w-[500px] rounded-xl mx-auto p-5">
+        <h2 className="text-3xl font-semibold mb-5 text-blue-500 text-center">
+          Add User
+        </h2>
+        <p className="text-center text-xl font-[500]">Create new user</p>
+        <form
+          onSubmit={handleSubmit(AddUserBtn)}
+          className="flex flex-col  gap-5"
+        >
+          <label htmlFor="name">
+            Name:
+            <input
+              className="w-full border p-2 outline-none rounded-xl px-3 mt-2"
+              type="text"
+              placeholder="Enter your user name"
+              id="name"
+              {...register("name")}
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              className="w-full border p-2 outline-none rounded-xl px-3 mt-2"
+              type="email"
+              id="email"
+              placeholder="Enter user email"
+              required
+              {...register("email")}
+            />
+          </label>
+          <label htmlFor="password">
+            Password:
+            <input
+              className="w-full border p-2 outline-none rounded-xl px-3 mt-2"
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              required
+              {...register("password")}
+            />
+          </label>
+          <button
+            type="submit"
+            className="bg-blue-700 p-2 text-xl text-white rounded-lg"
+          >
+            Add
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default AddUserPage;
