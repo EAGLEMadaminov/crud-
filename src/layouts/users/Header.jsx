@@ -4,7 +4,7 @@ const Header = () => {
   const navigate = useNavigate();
   const handleLogOutBtn = () => {
     localStorage.clear("token");
-    navigate("/sign-in");
+    navigate("/auth/sign-in");
   };
   return (
     <div
