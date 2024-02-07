@@ -49,16 +49,27 @@ const UsersPage = () => {
   };
 
   const handleDeleteBtn = async (item) => {
-    try {
-      let { data } = await axios.delete(`/users/${item.id}`);
-      setIsDeleteUser(!isDeleteUser);
-      toast.success("User deleted successfully");
-    } catch (error) {
-      console.log(error);
-      toast.error("Network error");
+    if (item.status === "active") {
+      try {
+        let { data } = await axios.delete(`/users/${item.id}`);
+        setIsDeleteUser(!isDeleteUser);
+        toast.success("User deleted successfully");
+      } catch (error) {
+        console.log(error);
+        toast.error("Network error");
+      }
+    } else {
+      toast.error("Your status is not active");
     }
   };
 
+  const UpdateUserBtn = (item) => {
+    if (item.status === "active") {
+      navigate(`/users/user/${item.id}`);
+    } else {
+      toast.error("Your status is not active");
+    }
+  };
   return (
     <div className="mt-[100px]">
       <table className="mx-auto mt-10 text-center">
@@ -104,12 +115,12 @@ const UsersPage = () => {
                   >
                     Delete
                   </button>
-                  <Link
-                    to={`user/${item.id}`}
+                  <button
+                    onClick={() => UpdateUserBtn(item)}
                     className="bg-green-500 text-white p-2 px-3 ml-2 rounded-lg"
                   >
                     🖋
-                  </Link>
+                  </button>
                 </td>
               </tr>
             );

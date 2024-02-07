@@ -2,27 +2,11 @@
   "users": [
     {
       "id": 1,
-      "name": "Akmal7",
-      "email": "akmal7@gmail.com",
-      "password": "1234567a",
+      "name": "Akmalbek",
+      "email": "akmalbek@gmail.com",
+      "password": "1234",
       "age": "24",
       "status": "block"
-    },
-    {
-      "id": 2,
-      "name": "Anvar",
-      "email": "anvar@gmail.com",
-      "password": "123456a",
-      "age": "21",
-      "status": "active"
-    },
-    {
-      "id": 4,
-      "name": "Bobur",
-      "email": "bobur@gmail.com",
-      "password": "1234567a",
-      "age": "32",
-      "status": "active"
     },
     {
       "name": "John Doe",
@@ -43,13 +27,27 @@
       "email": "javohirbek.madaminjonov99@gmail.com",
       "password": "123456",
       "id": "2.4su5c0s1vf",
-      "status": "active"
+      "status": "block"
     },
     {
       "name": "Eagle",
       "email": "eagle@gmail.com",
       "password": "123456a",
       "id": "g.1o1cajg1i",
+      "status": "active"
+    },
+    {
+      "name": "Bobur",
+      "email": "bobur@gmail.com",
+      "password": "1234",
+      "id": "7.rlmzwznp5a",
+      "status": "active"
+    },
+    {
+      "name": "Azizbek",
+      "email": "azizbek@gmail.com",
+      "password": "123456a",
+      "id": "9.rnfl4dzbvc",
       "status": "active"
     }
   ]
